@@ -1,0 +1,18 @@
+<!DOCTYPE html5>
+<html> 
+<h1>proJect HaasiL</h1>
+<body>
+<form action="/quiz" method="POST">
+    <ol>
+        {% for i in q %}
+            <li><u> {{i[1]}} </u></li>
+            {% for j in o[i][0] %}
+                <input type="radio" value = {{j}} name = {{i}} >{{j}}
+		
+            {% endfor %}
+        {% endfor %}
+    </ol>
+    <input type="submit" value="submit" >
+</form>
+</body>
+</html>
