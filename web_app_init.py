@@ -65,21 +65,10 @@ def quiz_answers():
     json.dump(result, codecs.open(path_to_file, 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format
 
     for i in list(ques.keys()):
-        #print(i)
-        #print(request.form.to_dict())
-
         answered = result['('+str(i[0])+',']
-        # print(answered)
-        # answered = findKey(answered)
-        # answered = sample_questions[answered]
-        # res = answered[0][0]
-        #print(res)
-        #print(answered)
-        #print(sample_questions[i][0][0])
         if sample_questions[i][0][0] == answered:
             correct = correct+1
-    #print(countTags())   
-    print(analyseTags(getResponses()))
+  
     logAnalysis()
         
     return '<h1>Correct Answers: <u>'+str(correct)+"/"+str(len(sample_questions))+'</u></h1>'
@@ -112,9 +101,6 @@ def analyseTags(response):
     for i in list(ques.keys()):
         answered = response['('+str(i[0])+',']
         answered1 = findKey(i[0])
-        print(answered,":",answered1)
-        #print(answered1)
-        #print(answered, ":", answered1)
         answered2 = sample_questions[answered1]
         tag = answered2[2]
         if sample_questions[i][0][0] == answered:
@@ -138,18 +124,13 @@ def analyseSubs(response):
     for i in list(ques.keys()):
         answered = response['('+str(i[0])+',']
         answered1 = findKey(i[0])
-        #print(answered,":",answered1)
-        #print(answered1)
-        #print(answered, ":", answered1)
         answered2 = sample_questions[answered1]
         sub = answered2[1]
         if sample_questions[i][0][0] == answered:
-            #print(j)
             if sub not in sub_correct:
                 sub_correct[sub]=0
             sub_correct[sub]+=1
         else:
-                #print(j)
             if sub not in sub_wrong:
                 sub_wrong[sub]=0
             sub_wrong[sub]+=1
