@@ -2,6 +2,9 @@ from flask import Flask, render_template, request
 import random, copy
 import requests
 import json, codecs
+import pandas as pd
+import numpy as np
+from datetime import date
 
 app = Flask(__name__)
 
@@ -15,7 +18,7 @@ value: [[options],sub,[tags]] first option of options list is the correct answer
 
 sample_questions = {
     (1,"4 + 7 = ")  : [["11", "2", "10", "12"],"math",["add"]],
-    (2,"2 x 3 = ") : [["6","5","2","10"],"math",["mul"]],
+    (2,"2 x 3 = ")  : [["6","5","2","10"],"math",["mul"]],
     (3,"A for "  )  : [["Apple","Ball","Cat","Gomma"],"eng",["alpha"]],
     (4,"11 + 4 = ") : [["15", "13", "14", "10"],"math",["add"]],
     (5,"6 / 2 = ")  : [["3","4","5","1"],"math",["div"]],
@@ -42,10 +45,11 @@ def quiz():
     return render_template("main.html", q = shuffled, o = ques)
 
 def findKey(num):
+    ans = -1
     for i in list(sample_questions.keys()):
-        for j in sample_questions[i][0]:
-            if j == num:
-                return i
+        if i[0]==num:
+            ans = i
+    return ans
 
 def getResponses():
     """Load saved JSON of responses."""
@@ -57,11 +61,7 @@ def getResponses():
 @app.route("/quiz", methods=['POST'])
 def quiz_answers():
     correct = 0
-    #global result
     result = request.form.to_dict()
-    # f = open("answers.txt",'w')
-    # f.write(str(result))
-    # f.close()
     json.dump(result, codecs.open(path_to_file, 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format
 
     for i in list(ques.keys()):
@@ -78,7 +78,9 @@ def quiz_answers():
         #print(sample_questions[i][0][0])
         if sample_questions[i][0][0] == answered:
             correct = correct+1
-    #print(wrongCorrectQ(getResponses()))
+    #print(countTags())   
+    print(analyseTags(getResponses()))
+    logAnalysis()
         
     return '<h1>Correct Answers: <u>'+str(correct)+"/"+str(len(sample_questions))+'</u></h1>'
 
@@ -109,38 +111,71 @@ def analyseTags(response):
     tag_wrong = {}
     for i in list(ques.keys()):
         answered = response['('+str(i[0])+',']
-        answered1 = findKey(answered)
+        answered1 = findKey(i[0])
+        print(answered,":",answered1)
+        #print(answered1)
+        #print(answered, ":", answered1)
         answered2 = sample_questions[answered1]
-        #res = answered2[0][0]
         tag = answered2[2]
         if sample_questions[i][0][0] == answered:
             for j in tag:
+                #print(j)
                 if j not in tag_correct:
                     tag_correct[j]=0
                 tag_correct[j]+=1
         else:
             for j in tag:
+                #print(j)
                 if j not in tag_wrong:
                     tag_wrong[j]=0
                 tag_wrong[j]+=1
     return tag_correct, tag_wrong
 
+def analyseSubs(response):
+    """Analyses how many correct and wrong for each particular subject"""
+    sub_correct = {}
+    sub_wrong = {}
+    for i in list(ques.keys()):
+        answered = response['('+str(i[0])+',']
+        answered1 = findKey(i[0])
+        #print(answered,":",answered1)
+        #print(answered1)
+        #print(answered, ":", answered1)
+        answered2 = sample_questions[answered1]
+        sub = answered2[1]
+        if sample_questions[i][0][0] == answered:
+            #print(j)
+            if sub not in sub_correct:
+                sub_correct[sub]=0
+            sub_correct[sub]+=1
+        else:
+                #print(j)
+            if sub not in sub_wrong:
+                sub_wrong[sub]=0
+            sub_wrong[sub]+=1
+    return sub_correct, sub_wrong
 
 def wrongCorrectQ(response):
     """Returns a dictionary of questions for which response was right and wrong"""
-    q_res = {0:[],1:[]}
+    #q_res = {0:[],1:[]}
+    wrong_q = {}
+    correct_q = {}
     for i in list(ques.keys()):
         answered = response['('+str(i[0])+',']
-        key = findKey(answered)
+        key = findKey(i[0])
         #answered2 = sample_questions[answered1]
         #res = answered2[0][0]
         if sample_questions[i][0][0] == answered:
-            q_res[1].append(key)
-            #correct_q[answered1]+=1
+            #q_res[1].append(key)
+            if key not in correct_q:
+                correct_q[key] = 0
+            correct_q[key]+=1
         else:
-            q_res[0].append(key)
-            #wrong_q[answered1]+=1
-    return q_res
+            if key not in wrong_q:
+                wrong_q[key]=0
+            #q_res[0].append(key)
+            wrong_q[key]+=1
+    return correct_q, wrong_q
 
 def sampleWrong():
     """Samples previously incorrect responses to be asked again."""
@@ -156,6 +191,68 @@ def sampleWrong():
         for i in sample:
             sample_q[i]=sample_questions[i]
     return sample_q
+
+def logAnalysis():
+    """
+    Create two seperate CSVs. One for tags and the other for subjects. 
+    Against each subject/tag how many were right and how many were wrong and total in that category. 
+    """
+    #creating tags csv 
+    correct, wrong = analyseTags(getResponses())
+    total = countTags()
+    print(total)
+    right = []
+    incorrect = []
+    final_total = []
+    for i in list(total.keys()):
+        if i in correct:
+            right.append(correct[i])
+            if i in wrong:
+                incorrect.append(wrong[i])
+            else:
+                incorrect.append(0) 
+        else:
+            incorrect.append(wrong[i])   
+            if i in correct:
+                right.append(correct[i])
+            else: 
+                right.append(0)   
+        final_total.append(total[i])
+        
+    #index = np.array([i for i in range(0,len(total))])
+    tags = {"Tag":pd.Series(np.array(list(total.keys()))),"Correct":pd.Series(np.array(right)),"Wrong":pd.Series(np.array(incorrect)),"Total":pd.Series(np.array(final_total))}
+    tags = pd.DataFrame(tags)
+    tags.to_csv("tags-"+str(date.today())+".csv",header=True,index=None)
+
+    #creating subjects csv
+    correct_s, wrong_s = analyseSubs(getResponses())
+    total_s = countSub()
+    print(total_s)
+    print(correct_s,",",wrong_s)
+    #print(total)
+    right_s = []
+    incorrect_s = []
+    final_total_s = []
+    for i in list(total_s.keys()):
+        if i in correct_s:
+            right_s.append(correct_s[i])
+            if i in wrong_s:
+                incorrect_s.append(wrong_s[i])
+            else:
+                incorrect_s.append(0) 
+        else:
+            incorrect_s.append(wrong_s[i])   
+            if i in correct_s:
+                right_s.append(correct_s[i])
+            else: 
+                right_s.append(0)   
+        final_total_s.append(total_s[i])
+        
+    #index = np.array([i for i in range(0,len(total))])
+    subs = {"Tag":pd.Series(np.array(list(total_s.keys()))),"Correct":pd.Series(np.array(right_s)),"Wrong":pd.Series(np.array(incorrect_s)),"Total":pd.Series(np.array(final_total_s))}
+    subs = pd.DataFrame(subs)
+    print(subs.head())
+    subs.to_csv("subs-"+str(date.today())+".csv",header=True,index=None)
 
 
 if __name__ == "__main__":
