@@ -105,13 +105,11 @@ def analyseTags(response):
         tag = answered2[2]
         if sample_questions[i][0][0] == answered:
             for j in tag:
-                #print(j)
                 if j not in tag_correct:
                     tag_correct[j]=0
                 tag_correct[j]+=1
         else:
             for j in tag:
-                #print(j)
                 if j not in tag_wrong:
                     tag_wrong[j]=0
                 tag_wrong[j]+=1
@@ -138,14 +136,11 @@ def analyseSubs(response):
 
 def wrongCorrectQ(response):
     """Returns a dictionary of questions for which response was right and wrong"""
-    #q_res = {0:[],1:[]}
     wrong_q = {}
     correct_q = {}
     for i in list(ques.keys()):
         answered = response['('+str(i[0])+',']
         key = findKey(i[0])
-        #answered2 = sample_questions[answered1]
-        #res = answered2[0][0]
         if sample_questions[i][0][0] == answered:
             #q_res[1].append(key)
             if key not in correct_q:
@@ -154,8 +149,7 @@ def wrongCorrectQ(response):
         else:
             if key not in wrong_q:
                 wrong_q[key]=0
-            #q_res[0].append(key)
-            wrong_q[key]+=1
+                wrong_q[key]+=1
     return correct_q, wrong_q
 
 def sampleWrong():
@@ -181,7 +175,6 @@ def logAnalysis():
     #creating tags csv 
     correct, wrong = analyseTags(getResponses())
     total = countTags()
-    print(total)
     right = []
     incorrect = []
     final_total = []
@@ -200,7 +193,6 @@ def logAnalysis():
                 right.append(0)   
         final_total.append(total[i])
         
-    #index = np.array([i for i in range(0,len(total))])
     tags = {"Tag":pd.Series(np.array(list(total.keys()))),"Correct":pd.Series(np.array(right)),"Wrong":pd.Series(np.array(incorrect)),"Total":pd.Series(np.array(final_total))}
     tags = pd.DataFrame(tags)
     tags.to_csv("tags-"+str(date.today())+".csv",header=True,index=None)
@@ -208,9 +200,6 @@ def logAnalysis():
     #creating subjects csv
     correct_s, wrong_s = analyseSubs(getResponses())
     total_s = countSub()
-    print(total_s)
-    print(correct_s,",",wrong_s)
-    #print(total)
     right_s = []
     incorrect_s = []
     final_total_s = []
@@ -232,7 +221,6 @@ def logAnalysis():
     #index = np.array([i for i in range(0,len(total))])
     subs = {"Tag":pd.Series(np.array(list(total_s.keys()))),"Correct":pd.Series(np.array(right_s)),"Wrong":pd.Series(np.array(incorrect_s)),"Total":pd.Series(np.array(final_total_s))}
     subs = pd.DataFrame(subs)
-    print(subs.head())
     subs.to_csv("subs-"+str(date.today())+".csv",header=True,index=None)
 
 
