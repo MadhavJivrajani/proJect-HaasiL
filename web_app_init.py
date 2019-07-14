@@ -219,7 +219,7 @@ def logAnalysis():
         final_total_s.append(total_s[i])
         
     #index = np.array([i for i in range(0,len(total))])
-    subs = {"Tag":pd.Series(np.array(list(total_s.keys()))),"Correct":pd.Series(np.array(right_s)),"Wrong":pd.Series(np.array(incorrect_s)),"Total":pd.Series(np.array(final_total_s))}
+    subs = {"Subject":pd.Series(np.array(list(total_s.keys()))),"Correct":pd.Series(np.array(right_s)),"Wrong":pd.Series(np.array(incorrect_s)),"Total":pd.Series(np.array(final_total_s))}
     subs = pd.DataFrame(subs)
     subs.to_csv("subs-"+str(date.today())+".csv",header=True,index=None)
 
