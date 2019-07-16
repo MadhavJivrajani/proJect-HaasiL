@@ -4,7 +4,7 @@ import requests
 import json, codecs
 import pandas as pd
 import numpy as np
-from datetime import date, datetime
+from datetime import datetime
 from os import path
 
 
