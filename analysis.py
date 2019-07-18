@@ -56,8 +56,8 @@ def countSub(questions = sample_questions):
     for i in list(questions.keys()):
         j = questions[i][1]
         if j not in sub_count:
-            sub_count[j]=0
-        sub_count[j]+=1
+            sub_count[j] = 0
+        sub_count[j] += 1
     return sub_count
 
 def analyseTags(response):
