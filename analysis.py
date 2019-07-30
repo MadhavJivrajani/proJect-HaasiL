@@ -56,8 +56,8 @@ def countSub(questions = sample_questions):
     for i in list(questions.keys()):
         j = questions[i][1]
         if j not in sub_count:
-            sub_count[j] = 0
-        sub_count[j] += 1
+            sub_count[j]=0
+        sub_count[j]+=1
     return sub_count
 
 def analyseTags(response):
@@ -143,20 +143,22 @@ def wrongCorrectQ(response):
             wrong_q[key]+=1
     return correct_q, wrong_q
 
-def sampleWrong():
-    """Samples previously incorrect responses to be asked again."""
-    wrong = wrongCorrectQ(getResponses())[0]
-    if int(len(wrong))!=0:
-        sample = random.sample(wrong,int(len(wrong)*0.6))
+def sampleWrong(fraction):
+    """Samples "fraction" of previously incorrect responses to be asked again."""
+    wrong = wrongCorrectQ(getResponses())[1]
+    print(wrong)
+    if int(len(wrong)*fraction)!=0:
+        sample = random.sample(list(wrong.keys()),int(len(wrong)*fraction))
         sample_q = {}
         for i in sample:
             sample_q[i]=sample_questions[i]
     else:
-        sample = random.sample(wrong,len(wrong))
+        sample = random.sample(list(wrong.keys()),len(wrong))
         sample_q = {}
         for i in sample:
             sample_q[i]=sample_questions[i]
     return sample_q
+
 
 def logAnalysis():
     """
@@ -231,6 +233,28 @@ def logAnalysis():
         subs_final = pd.read_csv("subs.csv")
         subs_final = pd.concat([subs_final, subs])
         subs_final.to_csv("subs.csv", header = True, index = None)
+    logWrongQues()
+
+def logWrongQues():
+    """
+    Creates a csv in the same format as the one from which new questions are imported.
+    Stores all wrongly answered questions. 
+    """
+    dt_log = str(datetime.now().strftime("%d/%m/%y-%H:%M:%S")) 
+    wrong = sampleWrong(1)
+    options = [",".join(i[0]) for i in list(wrong.values())]
+    questions = [i[1] for i in list(wrong.keys())]
+    answers = [i[0][0] for i in list(wrong.values())]
+    tags = [",".join(i[2]) for i in list(wrong.values())]
+    wrong_df = {"date-time":pd.Series(np.array([dt_log for _ in range(len(wrong))])),"Question":pd.Series(np.array(questions)),"Options":pd.Series(np.array(options)),"Answer":pd.Series(np.array(answers)),"Tags":pd.Series(np.array(tags))}
+    wrong_df = pd.DataFrame(wrong_df)
+    if(str(path.exists("wrong_ques.csv"))=='False'):
+        wrong_df.to_csv("wrong_ques.csv",header=True,index=None)
+    else:
+        wrong_df_final = pd.read_csv("wrong_ques.csv")
+        wrong_df_final = pd.concat([wrong_df_final, wrong_df])
+        wrong_df_final.to_csv("wrong_ques.csv", header = True, index = None)
+
 
 def plotTag(tag):
     """Plots progress graphs for a specific tag"""
@@ -285,3 +309,4 @@ def plotSub(sub):
     plt.xlabel("Date-time")
     plt.ylabel("Wrong-Percentage Sub")
     plt.show()
+
