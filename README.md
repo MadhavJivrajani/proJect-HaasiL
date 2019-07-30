@@ -10,6 +10,6 @@ Enter the url its running on in the browser.
 Functions to perform analysis on the answered questions present in analysis.py
 
 ### TODO: 
-1. Add functions for keeping track of different sessions of questions. 
-2. Figure out how to reuse questions which were answered incorrectly in the next round of questions. 
-3. Import questions in the specified format from a csv. 
+1. Extremely fancy and attractive front-end
+2. Figure out gamification.
+3. Integrate gamification. 
