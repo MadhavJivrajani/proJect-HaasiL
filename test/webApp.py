@@ -15,28 +15,29 @@ def shuffle(q):
             i+=1
     return keys
 
-@app.route("/")
+#@app.route("/")
 def quiz():
     shuffled = shuffle(ques)
     for i in list(ques.keys()):
         random.shuffle(ques[i][0])
-    return render_template("main.html", q = shuffled, o = ques)
+    print(ques)
+    print(shuffled)
+
+quiz()
+# @app.route("/quiz", methods=['POST'])
+# def quiz_answers():
+#     correct = 0
+#     result = request.form.to_dict()
+#     json.dump(result, codecs.open(path_to_file, 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format
+
+#     for i in list(ques.keys()):
+#         answered = result['('+str(i[0])+',']
+#         if sample_questions[i][0][0] == answered:
+#             correct = correct+1
+#     logAnalysis()        
+#     return '<h1>Correct Answers: <u>'+str(correct)+"/"+str(len(sample_questions))+'</u></h1>'
 
 
-@app.route("/quiz", methods=['POST'])
-def quiz_answers():
-    correct = 0
-    result = request.form.to_dict()
-    json.dump(result, codecs.open(path_to_file, 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format
-
-    for i in list(ques.keys()):
-        answered = result['('+str(i[0])+',']
-        if sample_questions[i][0][0] == answered:
-            correct = correct+1
-    logAnalysis()        
-    return '<h1>Correct Answers: <u>'+str(correct)+"/"+str(len(sample_questions))+'</u></h1>'
-
-
-if __name__ == "__main__":
-    app.run(use_reloader = True, debug=True)
+# if __name__ == "__main__":
+#     app.run(use_reloader = True, debug=True)
     

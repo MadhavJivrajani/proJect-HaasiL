@@ -25,7 +25,7 @@ sample_questions = {
 
 ques = copy.deepcopy(sample_questions)
 
-path_to_file = "answers.json"
+path_to_file = "responses.json"
 
 def findKey(num):
     ans = -1
@@ -146,7 +146,6 @@ def wrongCorrectQ(response):
 def sampleWrong(fraction):
     """Samples "fraction" of previously incorrect responses to be asked again."""
     wrong = wrongCorrectQ(getResponses())[1]
-    print(wrong)
     if int(len(wrong)*fraction)!=0:
         sample = random.sample(list(wrong.keys()),int(len(wrong)*fraction))
         sample_q = {}

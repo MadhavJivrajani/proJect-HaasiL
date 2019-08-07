@@ -1,0 +1,86 @@
+body {
+    font-family: Open Sans;
+}
+
+h1 {
+    text-align: center;
+}
+
+#title {
+    text-decoration: underline;
+}
+
+#quiz {
+    text-indent: 10px;
+    display:none;
+}
+
+.button {
+    border:4px solid;
+    border-radius:5px;
+    width: 40px;
+    padding-left:5px;
+    padding-right: 5px;
+    position: relative;
+    float:right;
+    background-color: #DCDCDC;
+    color: black;
+    margin: 0 2px 0 2px;
+}
+
+.button.active {
+    background-color: #F8F8FF;
+    color: #525252;
+}
+
+button {
+    position: relative;
+    float:right;
+}
+
+#logo {
+	width: 310px;
+    height: 150px;
+    float: initial;
+}
+
+.button a {
+    text-decoration: none;
+    color: black;
+}
+/* #opts {
+    display: inline;
+} */
+#container {
+    width:50%;
+    /* margin:auto; */
+    /* padding: 0 25px 40px 10px; */
+    background-color: rgb(253, 253, 253);
+    border:4px solid #B0E0E6;
+    /* border-radius:5px; */
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    box-shadow: 5px 5px 5px #888;
+    margin-left: 10px;
+	/* background: #d2def2; */
+	padding: 10px 20px 10px 20px;
+	width: 400px;
+	border-radius: 20px;
+    float: left;
+    
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#prev {
+    display:none;
+}
+
+#start {
+    display:none;
+    width: 90px;
+}

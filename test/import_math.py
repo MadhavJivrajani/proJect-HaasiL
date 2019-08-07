@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from os import path
+import json, codecs
 
 df = pd.read_csv("math.csv")
 df.drop(["Pictorial Questions","Need for translation (yes or no)","Translated Question (if needed else fill with None)"],axis=1,inplace=True)
@@ -34,7 +35,9 @@ if(str(path.exists("wrong_ques.csv"))=='True'):
     tags_w = wrong['Tags'].tolist()
     
     for i in range(len(wrong)):
-        ques[(len(ques)+i+1,questions_w[i])] = [opts_w[i],"math",[k.strip() for k in tags_w[i].split(",")]]        
+        ques[str(len(ques)+i+1)+","+questions_w[i]] = [opts_w[i],"math",[k.strip() for k in tags_w[i].split(",")]]        
+    json.dump(ques, codecs.open("questions.json", 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format
+
 
 def tag_ques(tags):
     """Gets questions for a particular set of tags."""
@@ -45,4 +48,4 @@ def tag_ques(tags):
         if set(tags).issubset(set(tags_super[i])):
             ques_tag[(j+1,questions[i])] = [opts[i],"math",tags_super[i]]
             j+=1
-    return ques_tag
+    json.dump(ques, codecs.open("questions.json", 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format

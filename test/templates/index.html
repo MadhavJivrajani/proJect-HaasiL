@@ -1,0 +1,33 @@
+<html>
+	<img id="logo" src="{{ url_for('static', filename='img/standard.png') }}"/>
+
+	<head>
+		<title>Project Haasil</title>
+		<br>
+	    <br>
+		<link href ="{{ url_for('static', filename = 'css/style_1.css') }}" rel ="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+		
+	</head>
+	<body>
+		<div id='container'>
+			<!-- <div id=''> -->
+
+			<!-- </div> -->
+   			<br/>
+  			<div id='quiz'></div>
+    		<div class='button' id='next'><a href='#'>Next</a></div>
+    		<div class='button' id='prev'><a href='#'>Prev</a></div>
+    		<div class='button' id='start'> <a href='#'>Start Over</a></div>
+    		<!-- <button class='' id='next'>Next</a></button>
+    		<button class='' id='prev'>Prev</a></button>
+    		<button class='' id='start'> Start Over</a></button> -->
+    	</div>
+
+		<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+		<!-- <script type="text/javascript" src='questions.json'></script> -->
+		<script type = "text/javascript" src = "{{ url_for('static', filename = 'scripts/jsquiz.js') }}" ></script>
+
+		<!-- <script type='text/javascript' src='jsquiz.js'></script> -->
+	</body>
+</html>
