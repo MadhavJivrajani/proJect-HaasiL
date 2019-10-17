@@ -4,9 +4,9 @@ Some boiler-plate code to get started on a web-app for education.
 Code mainly focuses on analysis of performance on questions posed.
 
 ### Instructions to run the code
-Run webApp_v2.py 
+Run `python3 webApp_v2.py` 
 
-Enter the url its running on in the browser. 
+Enter `http://localhost:8000/` in the browser to run the web app.
 Functions to perform analysis on the answered questions present in analysis.py
 
 Drop an email at madhav.jiv@gmail.com to get access to the CSV files being used. 
