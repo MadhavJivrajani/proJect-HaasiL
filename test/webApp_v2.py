@@ -4,11 +4,13 @@ import random
 import json, codecs
 
 app = Flask(__name__)
+student_name = ""
+@app.route('/', methods=['GET', 'POST'])
+def main():
+    # global student_name
+    # student_name = request.form["name"]
 
-@app.route('/')
-def test_page():
-    # look inside `templates` and serve `index.html`
-    return render_template('index.html')
+    return render_template('name.html')
 
 @app.route('/hello', methods=['GET', 'POST'])
 def hello():
@@ -18,13 +20,19 @@ def hello():
     if request.method == 'POST':
         data = request.get_json()
         json.dump(data, codecs.open("responses.json", 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format
-        logAnalysis()
+        logAnalysis(student_name)
         return 'OK', 200
 
     # GET request
     else:
-        #message = {'greeting':'Hello from Flask!'}
         return jsonify(data)  # serialize and use JSON headers
+
+@app.route('/quiz', methods=['GET', 'POST'])
+def name():
+    global student_name
+    student_name = request.form["name"]
+
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(use_reloader = True, debug=True, port=8000)

@@ -112,35 +112,35 @@ fetch('/hello')
       // Creates and returns the div that contains the questions and 
       // the answer selections
       function createQuestionElement(index) {
-      var qElement = $('<div>', {
-        id: 'question'
-      });
-      var key = getKey(index+1);
-      var header = $('<h2>Question ' + (index + 1) + ':</h2>');
-      qElement.append(header);
-      var question = $('<p>').append(key[1]);
-      qElement.append(question);
-    
-      var radioButtons = createRadios(index);
-      qElement.append(radioButtons);
-    
-      return qElement;
+        var qElement = $('<div>', {
+          id: 'question'
+        });
+        var key = getKey(index+1);
+        var header = $('<h2>Question ' + (index + 1) + ':</h2>');
+        qElement.append(header);
+        var question = $('<p>').append(key[1]);
+        qElement.append(question);
+      
+        var radioButtons = createRadios(index);
+        qElement.append(radioButtons);
+      
+        return qElement;
       }
     
       // Creates a list of the answer choices as radio inputs
       function createRadios(index) {
-      var radioList = $('<ul>');
-      var item;
-      var input = '';
-      var key = getKey(index+1);
-      for (var i = 0; i < questions.get(key)[0].length; i++) {
-        item = $('<li>');
-        input = '<br><input type="radio" name="answer" value=' + i + ' />';
-        input += questions.get(key)[0][i];
-        item.append(input);
-        radioList.append(item);
-      }
-      return radioList;
+        var radioList = $('<ul>');
+        var item;
+        var input = '';
+        var key = getKey(index+1);
+        for (var i = 0; i < questions.get(key)[0].length; i++) {
+          item = $('<li>');
+          input = '<br><input type="radio" name="answer" id="options" value=' + i + ' />';
+          input += questions.get(key)[0][i];
+          item.append(input);
+          radioList.append(item);
+        }
+        return radioList;
       }
     
       // Reads the user selection and pushes the value to an array

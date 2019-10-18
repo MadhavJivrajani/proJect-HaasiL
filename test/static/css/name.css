@@ -1,0 +1,47 @@
+#logo {
+
+	width: 390px;
+    height: 190px;
+    float: initial;
+    margin-left: 500;
+    margin-top: 100;
+}
+
+input[type=button], input[type=submit] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius:7px;
+    font-size: 20px;
+}
+
+input[type=text] {
+    border: 2px solid;
+    border-radius:3px;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 5px 10px;
+    padding-bottom: 2px;
+}
+
+.button.active {
+    background-color: #F8F8FF;
+    color: #525252;
+}
+
+.button a {
+    text-decoration: none;
+    color: black;
+}
+
+#name {
+    font-size: 35px;
+}
+
+#submit {
+    font-size: 30px;
+}

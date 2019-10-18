@@ -1,0 +1,19 @@
+<html>
+	<img id="logo" src="{{ url_for('static', filename='img/standard.png') }}"/>
+
+	<head>
+		<title>Project Haasil</title>
+		<br>
+	    <br>
+		<link href ="{{ url_for('static', filename = 'css/name.css') }}" rel ="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+		
+	</head>
+	<body>
+		<form action = "http://localhost:8000/quiz" method="POST">
+
+			<p align="center" id="name">Enter Student's Name: <input type="text" name="name"/></p>
+			<div class="button"><p align="center" id="submit"><input type="submit" value="Submit"/></p></div>
+        </form>
+    </body>
+</html>
