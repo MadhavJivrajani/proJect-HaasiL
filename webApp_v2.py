@@ -27,7 +27,7 @@ def hello():
     else:
         return jsonify(data)  # serialize and use JSON headers
 
-@app.route('/name', methods=['GET', 'POST'])
+@app.route('/quiz', methods=['GET', 'POST'])
 def name():
     global student_name
     student_name = request.form["name"]

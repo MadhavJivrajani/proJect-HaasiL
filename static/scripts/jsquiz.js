@@ -135,7 +135,7 @@ fetch('/hello')
         var key = getKey(index+1);
         for (var i = 0; i < questions.get(key)[0].length; i++) {
           item = $('<li>');
-          input = '<br><input type="radio" name="answer" value=' + i + ' />';
+          input = '<br><input type="radio" name="answer" id="options" value=' + i + ' />';
           input += questions.get(key)[0][i];
           item.append(input);
           radioList.append(item);
