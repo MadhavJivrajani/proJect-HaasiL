@@ -12,10 +12,10 @@ Functions to perform analysis on the answered questions present in analysis.py
 Drop an email at madhav.jiv@gmail.com to get access to the CSV files being used. 
 
 ### TODO: 
-- [x] Log data based on tags, subjects, correctly and wrongly answered questions.  
-- [x] Re-ask a fraction of previously wrongly answered questions.  
-- [x] Log data about individual students.  
-- [x] Figure out gamification.  
-- [ ] Reformat JSON and modify code.  
-- [ ] Integrate gamification.  
-- [ ] Pictures with corresponding questions.  
+- [x] Log data based on tags, subjects, correctly and wrongly answered questions  
+- [x] Re-ask a fraction of previously wrongly answered questions  
+- [x] Log data about individual students  
+- [x] Figure out gamification  
+- [ ] Display images as options (*Urgent*)  
+- [ ] Reformat JSON and modify code  
+- [ ] Integrate gamification   
