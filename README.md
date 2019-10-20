@@ -16,6 +16,6 @@ Drop an email at madhav.jiv@gmail.com to get access to the CSV files being used.
 - [x] Re-ask a fraction of previously wrongly answered questions.  
 - [x] Log data about individual students.  
 - [x] Figure out gamification.  
-- [x] Reformat JSON and modify code.  
+- [ ] Reformat JSON and modify code.  
 - [ ] Integrate gamification.  
 - [ ] Pictures with corresponding questions.  
