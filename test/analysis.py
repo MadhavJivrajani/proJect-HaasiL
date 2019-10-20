@@ -242,7 +242,7 @@ def logWrongQues():
     dt_log = str(datetime.now().strftime("%d/%m/%y-%H:%M:%S")) 
     wrong = sampleWrong(1)
     options = [",".join(i[0]) for i in list(wrong.values())]
-    questions = [i[1] for i in list(wrong.keys())]
+    questions = [i.split(",")[1] for i in list(wrong.keys())]
     answers = [i[0][0] for i in list(wrong.values())]
     tags = [",".join(i[2]) for i in list(wrong.values())]
     wrong_df = {"date-time":pd.Series(np.array([dt_log for _ in range(len(wrong))])),"Question":pd.Series(np.array(questions)),"Options":pd.Series(np.array(options)),"Answer":pd.Series(np.array(answers)),"Tags":pd.Series(np.array(tags))}
