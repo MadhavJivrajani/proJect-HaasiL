@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from analysis import logAnalysis, sample_questions, path_to_file, ques
 import random
 import json, codecs
+from os import system
+
+system("python3 import_math.py")
 
 app = Flask(__name__)
 student_name = ""
