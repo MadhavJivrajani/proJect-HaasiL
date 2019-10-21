@@ -1,6 +1,7 @@
 # proJect-HaasiL
 
-Some boiler-plate code to get started on a web-app for education. 
+A data driven and gamified approach adopting the right way to learn!
+
 Code mainly focuses on analysis of performance on questions posed.
 
 ### Instructions to run the code
