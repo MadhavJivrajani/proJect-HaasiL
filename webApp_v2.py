@@ -5,11 +5,9 @@ import json, codecs
 
 app = Flask(__name__)
 student_name = ""
+subject_name = ""
 @app.route('/', methods=['GET', 'POST'])
 def main():
-    # global student_name
-    # student_name = request.form["name"]
-
     return render_template('name.html')
 
 @app.route('/hello', methods=['GET', 'POST'])
@@ -19,8 +17,9 @@ def hello():
     # POST request
     if request.method == 'POST':
         data = request.get_json()
+        #print(data)
         json.dump(data, codecs.open("responses.json", 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format
-        logAnalysis(student_name)
+        logAnalysis(student_name, subject_name)
         return 'OK', 200
 
     # GET request
@@ -30,7 +29,9 @@ def hello():
 @app.route('/quiz', methods=['GET', 'POST'])
 def name():
     global student_name
-    student_name = request.form["name"]
+    global subject_name
+    student_name = request.form["name"].lower()
+    subject_name = request.form["sub"].lower()
 
     return render_template('index.html')
 

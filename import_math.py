@@ -14,38 +14,14 @@ import matplotlib.pyplot as plt
 from os import path
 import json, codecs
 
-df = pd.read_csv("math.csv")
-df.drop(["Pictorial Questions","Need for translation (yes or no)","Translated Question (if needed else fill with None)"],axis=1,inplace=True)
-df.head()
+ques = {
+    "1,4 + 7 = "  : [["11", "2", "10", "12"],"math",["add","easy"]],
+    "2,2 x 3 = "  : [["6","5","2","10"],"math",["mul"]],
+    "3,A for "  : [["Apple","Ball","Cat","Goat"],"eng",["alpha"]],
+    "4,11 + 4 = " : [["15", "13", "14", "10"],"math",["add"]],
+    "5,6 / 2 = "  : [["3","4","5","1"],"math",["div"]],
+    "6,2 + 4 = " : [["6", "3", "8", "10"],"math",["add"]]
+}
 
-questions = df['Question'].tolist()
-opts = df['Options'].tolist()
-ans = df['Answer'].tolist()
-tags = df['Tags'].tolist()
+json.dump(ques, codecs.open("questions.json", 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) 
 
-ques = {}
-for i in range(len(df)):
-    ques[(i+1,questions[i])] = [opts[i],"math",[k.strip() for k in tags[i].split(",")]]
-
-if(str(path.exists("wrong_ques.csv"))=='True'):
-    wrong = pd.read_csv("wrong_ques.csv")
-    questions_w = wrong['Question'].tolist()
-    opts_w = wrong['Options'].tolist()
-    ans_w = wrong['Answer'].tolist()
-    tags_w = wrong['Tags'].tolist()
-    
-    for i in range(len(wrong)):
-        ques[str(len(ques)+i+1)+","+questions_w[i]] = [opts_w[i],"math",[k.strip() for k in tags_w[i].split(",")]]        
-    json.dump(ques, codecs.open("questions.json", 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format
-
-
-def tag_ques(tags):
-    """Gets questions for a particular set of tags."""
-    ques_tag = {}
-    j = 0
-    tags_super = [list(ques.values())[i][2] for i in range(len(list(ques.values())))]
-    for i in range(len(df)):
-        if set(tags).issubset(set(tags_super[i])):
-            ques_tag[(j+1,questions[i])] = [opts[i],"math",tags_super[i]]
-            j+=1
-    json.dump(ques, codecs.open("questions.json", 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4) ### this saves the array in .json format

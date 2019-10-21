@@ -15,16 +15,11 @@ value: [[options],sub,[tags]] first option of options list is the correct answer
 
 sample_questions = {
     "1,4 + 7 = "  : [["11", "2", "10", "12"],"math",["add","easy"]],
-    "2,2 + 3 = "  : [["5","6","2","8"],"math",["add","easy"]],
-    "3,5 + 2 "  : [["7","8","10","12"],"eng",["add","easy"]],
-    "4,11 + 4 = " : [["15", "13", "14", "10"],"math",["add","easy"]],
-    "5,15 + 2 = "  : [["17","15","18","13"],"math",["add","easy"]],
-    "6,16 + 3 = " : [["19", "13", "15", "17"],"math",["add","easy"]],
-    "7,30 + 3 = " : [["33", "31", "30", "34"],"math",["add","easy"]],
-    "8,21 + 3 = " : [["24", "23", "22", "20"],"math",["add","easy"]],
-    "9,17 + 2 = " : [["19", "21", "18", "20"],"math",["add","easy"]],
-    "10,45 + 3 = " : [["48", "45", "47", "43"],"math",["add","easy"]]
-
+    "2,2 x 3 = "  : [["6","5","2","10"],"math",["mul"]],
+    "3,A for "  : [["Apple","Ball","Cat","Goat"],"eng",["alpha"]],
+    "4,11 + 4 = " : [["15", "13", "14", "10"],"math",["add"]],
+    "5,6 / 2 = "  : [["3","4","5","1"],"math",["div"]],
+    "6,2 + 4 = " : [["6", "3", "8", "10"],"math",["add"]]
 }
 
 ques = copy.deepcopy(sample_questions)
@@ -163,7 +158,7 @@ def sampleWrong(fraction):
     return sample_q
 
 
-def logAnalysis(name):
+def logAnalysis(name, sub):
     """
     Create two seperate CSVs. One for tags and the other for subjects. 
     Against each subject/tag how many were right and how many were wrong and total in that category. 
@@ -196,12 +191,12 @@ def logAnalysis(name):
 
     tags = {"date-time":pd.Series(np.array([dt_log for _ in range(len(final_total))])),"Tag":pd.Series(np.array(list(total.keys()))),"Correct":pd.Series(np.array(right)),"Wrong":pd.Series(np.array(incorrect)),"Total":pd.Series(np.array(final_total)),"correct_perc":pd.Series(np.array(correct_perc)),"wrong_perc":pd.Series(np.array(wrong_perc))}
     tags = pd.DataFrame(tags)
-    if(str(path.exists("tags_"+name+".csv"))=='False'):
-        tags.to_csv("tags_"+name+".csv",header=True,index=None)
+    if(str(path.exists("tags_"+name+"_"+sub+".csv"))=='False'):
+        tags.to_csv("tags_"+name+"_"+sub+".csv",header=True,index=None)
     else:
-        tags_final = pd.read_csv("tags_"+name+".csv")
+        tags_final = pd.read_csv("tags_"+name+"_"+sub+".csv")
         tags_final = pd.concat([tags_final, tags])
-        tags_final.to_csv("tags_"+name+".csv",header = True, index = None)
+        tags_final.to_csv("tags_"+name+"_"+sub+".csv",header = True, index = None)
 
     #creating subjects csv
     correct_s, wrong_s = analyseSubs(getResponses())
@@ -230,38 +225,39 @@ def logAnalysis(name):
     #tags = {"date-time":pd.Series(np.array([dt_log for _ in range(len(final_total))])),"Tag":pd.Series(np.array(list(total.keys()))),"Correct":pd.Series(np.array(right)),"Wrong":pd.Series(np.array(incorrect)),"Total":pd.Series(np.array(final_total)),"correct_perc":pd.Series(np.array(correct_perc)),"wrong_perc":pd.Series(np.array(wrong_perc))}
     subs = {"date-time":pd.Series(np.array([dt_log for _ in range(len(final_total_s))])),"Sub":pd.Series(np.array(list(total_s.keys()))),"Correct":pd.Series(np.array(right_s)),"Wrong":pd.Series(np.array(incorrect_s)),"Total":pd.Series(np.array(final_total_s)),"correct_perc":pd.Series(np.array(correct_perc_s)),"wrong_perc":pd.Series(np.array(wrong_perc_s))}
     subs = pd.DataFrame(subs)
-    if(str(path.exists("subs_"+name+".csv"))=='False'):
-        subs.to_csv("subs_"+name+".csv",header=True,index=None)
+    if(str(path.exists("subs_"+name+"_"+sub+".csv"))=='False'):
+        subs.to_csv("subs_"+name+"_"+sub+".csv",header=True,index=None)
     else:
-        subs_final = pd.read_csv("subs_"+name+".csv")
+        subs_final = pd.read_csv("subs_"+name+"_"+sub+".csv")
         subs_final = pd.concat([subs_final, subs])
-        subs_final.to_csv("subs_"+name+".csv", header = True, index = None)
-    logWrongQues(name)
+        subs_final.to_csv("subs_"+name+"_"+sub+".csv", header = True, index = None)
+    logWrongQues(name, sub)
 
-def logWrongQues(name):
+def logWrongQues(name, sub):
     """
     Creates a csv in the same format as the one from which new questions are imported.
     Stores all wrongly answered questions. 
     """
     dt_log = str(datetime.now().strftime("%d/%m/%y-%H:%M:%S")) 
     wrong = sampleWrong(1)
+    print(wrong)
     options = [",".join(i[0]) for i in list(wrong.values())]
     questions = [i.split(",")[1] for i in list(wrong.keys())]
     answers = [i[0][0] for i in list(wrong.values())]
     tags = [",".join(i[2]) for i in list(wrong.values())]
     wrong_df = {"date-time":pd.Series(np.array([dt_log for _ in range(len(wrong))])),"Question":pd.Series(np.array(questions)),"Options":pd.Series(np.array(options)),"Answer":pd.Series(np.array(answers)),"Tags":pd.Series(np.array(tags))}
     wrong_df = pd.DataFrame(wrong_df)
-    if(str(path.exists("wrong_ques_"+name+".csv"))=='False'):
-        wrong_df.to_csv("wrong_ques_"+name+".csv",header=True,index=None)
+    if(str(path.exists("wrong_ques_"+name+"_"+sub+".csv"))=='False'):
+        wrong_df.to_csv("wrong_ques_"+name+"_"+sub+".csv",header=True,index=None)
     else:
-        wrong_df_final = pd.read_csv("wrong_ques_"+name+".csv")
+        wrong_df_final = pd.read_csv("wrong_ques_"+name+"_"+sub+".csv")
         wrong_df_final = pd.concat([wrong_df_final, wrong_df])
-        wrong_df_final.to_csv("wrong_ques_"+name+".csv", header = True, index = None)
+        wrong_df_final.to_csv("wrong_ques_"+name+"_"+sub+".csv", header = True, index = None)
 
 
 def plotTag(tag, name):
     """Plots progress graphs for a specific tag"""
-    data = pd.read_csv("tags_"+name+".csv")
+    data = pd.read_csv("tags_"+name+"_"+sub+".csv")
     tags = {}
     time = []
     #correct_perc = data["correct_perc"].tolist()
@@ -288,7 +284,7 @@ def plotTag(tag, name):
 
 def plotSub(sub):
     """Plots progress graphs for a specific subject"""
-    data = pd.read_csv("subs_"+name+".csv")
+    data = pd.read_csv("subs_"+name+"_"+sub+".csv")
     subs = {}
     time = []
     #correct_perc = data["correct_perc"].tolist()
