@@ -7,20 +7,15 @@ from datetime import date, datetime
 from os import path
 import matplotlib.pyplot as plt 
 
+from import_math import ques  as questions
+
 """
 sample_questions: 
 key: (unique question number, question)
 value: [[options],sub,[tags]] first option of options list is the correct answer.
 """
 
-sample_questions = {
-    "1,4 + 7 = "  : [["11", "2", "10", "12"],"math",["add","easy"]],
-    "2,2 x 3 = "  : [["6","5","2","10"],"math",["mul"]],
-    "3,A for "  : [["Apple","Ball","Cat","Goat"],"eng",["alpha"]],
-    "4,11 + 4 = " : [["15", "13", "14", "10"],"math",["add"]],
-    "5,6 / 2 = "  : [["3","4","5","1"],"math",["div"]],
-    "6,2 + 4 = " : [["6", "3", "8", "10"],"math",["add"]]
-}
+sample_questions = questions
 
 ques = copy.deepcopy(sample_questions)
 
