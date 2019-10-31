@@ -1,5 +1,5 @@
-# proJect-HaasiL
-
+# proJect HaasiL
+![logo](standard_whitebg.png)
 A data driven and gamified approach adopting the right way to learn!
 
 Code mainly focuses on analysis of performance on questions posed.
