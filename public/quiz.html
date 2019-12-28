@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase.js"></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+		<link type='text/css' rel='stylesheet' href='../css/quiz_style.css'/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+
+		<title>Project Haasil</title>
+	</head>
+	<body>
+        <div id="students">
+            <select id="student_list">
+
+            </select>
+        </div>
+        <div id='container'>
+            <div id='title'>
+                <h1>Project Haasil</h1>
+            </div>
+            <br/>
+            <div id='quiz'></div>
+            <div class='button' id='next'><a href='#'>Next</a></div>
+            <div class='button' id='prev'><a href='#'>Prev</a></div>
+            <div class='button' id='start'> <a href='#'>Submit</a></div>
+
+        </div>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyDcSNfHV-wvi_kC942alDLDAJMZcBvki-4",
+                authDomain: "haasil-7e3f3.firebaseapp.com",
+                databaseURL: "https://haasil-7e3f3.firebaseio.com",
+                projectId: "haasil-7e3f3",
+                storageBucket: "haasil-7e3f3.appspot.com",
+                messagingSenderId: "221496357927",
+                appId: "1:221496357927:web:6b6c8f2b76ed0b47644a02",
+                measurementId: "G-1L95T5KCGB"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.firestore();
+        </script>
+		<script src = "../scripts/quiz.js"></script>
+	</body>
+</html>

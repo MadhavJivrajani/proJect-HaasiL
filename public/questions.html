@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase.js"></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+        <title>Welcome</title>
+    </head>
+    <body>
+        <div id="bg">
+            <form>
+                <div id="questions">
+                    <h2>Hey <span id="name"></span></h2><br><br>
+                    <input type="text" name="sub" placeholder="Subject" id="sub"required/><br><br>
+                    <input type="text" name="no_of_questions" id="no_of_questions" placeholder="Number questions" required/><br><br>
+                    <input type="date" name="date" id="date" required/><br><br>
+                    <input type="submit" value="Submit" id="submit_info">     
+                </div> 
+            </form> 
+        </div>
+        <div id="enter_ques">
+            <form id="get_ques">
+
+            </form>
+        </div>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyDcSNfHV-wvi_kC942alDLDAJMZcBvki-4",
+                authDomain: "haasil-7e3f3.firebaseapp.com",
+                databaseURL: "https://haasil-7e3f3.firebaseio.com",
+                projectId: "haasil-7e3f3",
+                storageBucket: "haasil-7e3f3.appspot.com",
+                messagingSenderId: "221496357927",
+                appId: "1:221496357927:web:6b6c8f2b76ed0b47644a02",
+                measurementId: "G-1L95T5KCGB"
+            };
+            firebase.initializeApp(firebaseConfig);
+        </script>
+        <script src = "../scripts/questions.js"></script>
+    </body>
+</html>
