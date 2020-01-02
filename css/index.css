@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: 0;
+}
+
+#logo img {
+    max-width: 10vw;
+    margin-left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.form {
+    margin-top: 5vh;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    border: 2px solid #3df119c9;
+    padding: 2rem;
+    min-height: 50vh;
+    min-width: 30vw;
+    max-width: 70vw;
+}
+
+label {
+    font-size: 2rem;
+    margin-bottom: 50px;
+}
+
+input[type="text"], input[type="password"] {
+    min-width: 100px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+    outline: none;
+    border: none;
+    border: 1px solid rgb(2, 2, 2);
+    height: 2rem;
+    min-width: 20vw;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+input[type="password"] {
+    margin-left: 50px;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid rgb(37, 173, 128);
+}
+
+button {
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #3df119c9;
+    color: black;
+    box-shadow: none;
+    border: none;
+    margin-left: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.418);
+}
+
+button:nth-child(1) {
+    margin-left: 150px;
+}
+
+@media (max-width: 800px) {
+
+    #logo img {
+        max-width: 30vw;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
+    }
+        
+    .form {
+        margin-top: 10px;
+        margin-left: 40%;
+        padding: 10px;
+        border: none;
+    }
+
+    label {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="password"] {
+        min-width: 80px;
+        margin-left: 0px;
+        margin-bottom: 20px;
+        outline: none;
+        border: none;
+        border: 1px solid rgb(2, 2, 2);
+        height: 1.5rem;
+        min-width: 20vw;
+    }
+
+    input[type="password"] {
+        margin-left: 0px;
+    }
+
+    button {
+        font-size: 0.8rem;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #3df119c9;
+        color: black;
+        box-shadow: none;
+        border: none;
+        margin-left: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.418);
+    }
+
+    button:nth-child(1) {
+        margin-left: 10px;
+    }
+}
