@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Register student</title>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase.js"></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+        <!-- <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script> -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    </head>
+    <body>
+        <form id="student_reg" action="dashboard.html" method="POST">
+            Name: <input type="text" name="name" id="name" required><br><br>
+            Grade: <input type="text" name="grade" id="grade" required><br><br>
+
+            <!-- <a href="dashboard.html"><input type="submit" value="submit" id="submit"></a> -->
+            <input type="submit" value="submit" id="submit">
+            
+        </form>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyDcSNfHV-wvi_kC942alDLDAJMZcBvki-4",
+                authDomain: "haasil-7e3f3.firebaseapp.com",
+                databaseURL: "https://haasil-7e3f3.firebaseio.com",
+                projectId: "haasil-7e3f3",
+                storageBucket: "haasil-7e3f3.appspot.com",
+                messagingSenderId: "221496357927",
+                appId: "1:221496357927:web:6b6c8f2b76ed0b47644a02",
+                measurementId: "G-1L95T5KCGB"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            const db = firebase.database();
+        </script>
+        <script src="../scripts/student_reg.js"></script>
+
+    </body>
+</html>

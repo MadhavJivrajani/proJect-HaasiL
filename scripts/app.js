@@ -1,13 +1,13 @@
 (function() {
     const firebaseConfig = {
-        apiKey: "",
-        authDomain: "",
-        databaseURL: "",
-        projectId: "",
-        storageBucket: "",
-        messagingSenderId: "",
-        appId: "",
-        measurementId: ""
+        apiKey: "AIzaSyDcSNfHV-wvi_kC942alDLDAJMZcBvki-4",
+        authDomain: "haasil-7e3f3.firebaseapp.com",
+        databaseURL: "https://haasil-7e3f3.firebaseio.com",
+        projectId: "haasil-7e3f3",
+        storageBucket: "haasil-7e3f3.appspot.com",
+        messagingSenderId: "221496357927",
+        appId: "1:221496357927:web:6b6c8f2b76ed0b47644a02",
+        measurementId: "G-1L95T5KCGB"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -19,7 +19,7 @@
     const logOutBtn = document.getElementById("logout");
     const formElem = document.getElementById("form");
     const nameElem = document.getElementById("name");
-    const welElem = document.getElementById("welcome");
+    // const welElem = document.getElementById("welcome");
     
     logInBtn.addEventListener("click", e => {
         e.preventDefault();
@@ -52,7 +52,10 @@
                 info["/"+cred.user.uid+"/name"] = name;
                 firebase.database().ref("users").update(info);
             });
-            welElem.innerHTML = name;
+            // welElem.innerHTML = name;
+            $("#welcome").append($("<a>", {
+                href: "dashboard.html"
+            }).append($("<button id='dash'>Dashboard</button>")));
 
             formElem.reset();        
         } else {
@@ -71,11 +74,19 @@
             const ref = firebase.database().ref("users");
             
             ref.on('value', data => {
-                welElem.innerHTML = data.val()[uid]["name"];
+                // welElem.innerHTML = data.val()[uid]["name"];
+                $("#welcome").append($("<a>", {
+                    href: "dashboard.html"
+                }).append($("<button id='dash'>Dashboard</button>")));
+    
 
             }, err => {
                 console.log(err);
             });
+            // $("#welcome").append($("<a>", {
+            //     href: "dashboard.html"
+            // }).text("<button id='dash'>Dashboard</button>"))
+
         } else {
             console.log("not logged in");
             $('#form').show();

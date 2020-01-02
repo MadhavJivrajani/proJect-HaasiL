@@ -1,41 +1,42 @@
 let questions = [];
 let options = [];
-let subject = "";
 let correct = [];
 let tags = [];
-let no_of_questions = "";
-let timestamp = "";
 
 $("#submit_info").on("click", e => {
     e.preventDefault();
-    no_of_questions = document.getElementById("no_of_questions").value;
-    timestamp = document.getElementById("timestamp").value;
-    console.log(timestamp);
-    subject = document.getElementById("sub").value
+    let no_of_questions = document.getElementById("no_of_questions").value;
+    let timestamp = new Date(document.getElementById("date").value);
+    let name = document.getElementById("name").value;
+    let subject = document.getElementById("sub").value
     $("#bg").hide();
     for(let i=0;i<Number(no_of_questions);i++) {
         $("#get_ques").append($("<input>", {
             placeholder: "Please enter the question",
             name: "question",
-            type: "text"
+            type: "text",
+            required:""
         }));
     
         $("#get_ques").append($("<input>", {
             placeholder: "Comma seperated options",
             name: "options",
-            type: "text"
+            type: "text",
+            required:""
         }));
     
         $("#get_ques").append($("<input>", {
             placeholder: "Correct answer",
             name: "correct",
-            type: "text"
+            type: "text",
+            required:""
         }));
         
         $("#get_ques").append($("<input>", {
             placeholder: "Comma seperated tags",
             name: "tags",
-            type: "text"
+            type: "text",
+            required:""
         }));
     
         $("#get_ques").append($("<br><br>"))
@@ -66,9 +67,25 @@ $("#submit_info").on("click", e => {
             return this.value;
         }).get();
     
-        console.log(questions);
-        console.log(options);
-        console.log(correct);
-        console.log(tags);
+        let quiz = {};
+        let main_obj = {};
+        let counter = 1;
+        for(let i =0;i<questions.length;i++) {
+            quiz["question"+counter] = {
+                correct_response: correct[i],
+                options: options[i].split(","),
+                question: questions[i],
+                tags: tags[i].split(",")
+            }
+        }
+        main_obj["quiz"] = quiz;
+        main_obj["subject"] = subject;
+        main_obj["timestamp"] = timestamp;
+        main_obj["volunteer_name"] = name;
+        db.collection("subjects").add(main_obj); 
+
+        $("#enter_ques").hide();
+        $("#back_to_dashboard").append($("<a>", {href: "dashboard.html"}).append($("<p>Back to dashboard</p>")));
+
     });
 });
