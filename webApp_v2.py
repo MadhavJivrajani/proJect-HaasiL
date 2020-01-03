@@ -39,4 +39,5 @@ def name():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(use_reloader = True, debug=True, port=8000)
+    app.run( port=8000)
+    # use_reloader = True, debug=True,

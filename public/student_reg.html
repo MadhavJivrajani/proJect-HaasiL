@@ -9,14 +9,20 @@
         <!-- <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script> -->
         <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+
+        <link type='text/css' rel='stylesheet' href='../css/student_reg.css'/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+	
     </head>
     <body>
         <form id="student_reg" action="dashboard.html" method="POST">
-            Name: <input type="text" name="name" id="name" required><br><br>
-            Grade: <input type="text" name="grade" id="grade" required><br><br>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required><br><br>
+            <label for="grade">Grade: </label>
+            <input type="text" name="grade" id="grade" required><br><br>
 
             <!-- <a href="dashboard.html"><input type="submit" value="submit" id="submit"></a> -->
-            <input type="submit" value="submit" id="submit">
+            <input type="submit" value="Submit" id="submit">
             
         </form>
         <script>

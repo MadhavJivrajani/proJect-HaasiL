@@ -9,21 +9,33 @@
 		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+
+		<link type='text/css' rel='stylesheet' href='../css/index.css'/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
 	
 		<title>Project Haasil</title>
 	</head>
 	<body>
-		<form id="form">
-			Email<input type="text" id="email" required/><br>
-			Password<input type="password" id="pass" required/><br>
-			<span id="name1">Name</span><input type="text" id="name" required/><br>
 
-		</form>
-		<div id="buttons">
-			<button id="login">Log In</button>
-			<button id="signup">Sign Up</button>
+		<div id="logo">
+			<img src="../static/img/icon.png" alt="">
 		</div>
-		<button id="logout">Log Out</button>
+		<div class="form">
+			<form id="form">
+				<label for="email">Email</label>
+				<input type="text" id="email" required/><br>
+				<label for="password">Password</label>
+				<input type="password" id="pass" required/><br>
+				<label id="name1" for="name">Name</span><input type="text" id="name" required/><br>
+	
+			</form>
+			<div id="buttons">
+				<button id="login">Log In</button>
+				<button id="signup">Sign Up</button>
+			</div>
+			<button id="logout">Log Out</button>
+				
+		</div>
 		
 		<center><h2 id="welcome"></h2></center>		
 	

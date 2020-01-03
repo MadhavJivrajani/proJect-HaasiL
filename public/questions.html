@@ -4,17 +4,22 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
         <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+
+        <link type='text/css' rel='stylesheet' href='../css/questions.css'/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+	
         <title>Welcome</title>
     </head>
     <body>
+        <h2>Hey, please provide the following info</h2><br><br>
         <div id="bg">
             <form>
                 <div id="questions">
-                    <h2>Hey, please provide the following info</h2><br><br>
                     <input type="text" name="name" id="name" placeholder="Name" required/><br><br>
                     <input type="text" name="sub" placeholder="Subject" id="sub"required/><br><br>
                     <input type="text" name="no_of_questions" id="no_of_questions" placeholder="Number of questions" required/><br><br>
-                    Date on which quiz will be taken<br><input type="date" name="date" id="date" required/><br><br>
+                    <label for="date">Date on which quiz will be taken</label>
+                    <br><input type="date" name="date" id="date" required/><br><br>
                     <input type="submit" value="Submit" id="submit_info">     
                 </div> 
             </form> 

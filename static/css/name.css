@@ -1,13 +1,25 @@
-#logo {
-
-	width: 390px;
-    height: 190px;
-    float: initial;
-    margin-left: 500;
-    margin-top: 100;
+* {
+    animation: fadeIn 1s ease;
 }
 
-input[type=button], input[type=submit] {
+@keyframes fadeIn {
+    from{opacity: 0;}
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#logo {
+    max-width: 50vw;
+    margin-left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+input[type=submit] {
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -22,35 +34,41 @@ input[type=button], input[type=submit] {
 input[type=text] {
     border: 2px solid;
     border-radius:3px;
-    font-size: 20px;
+    font-size: 1.2rem;
     line-height: 20px;
     padding: 5px 10px;
     padding-bottom: 2px;
-}
-
-input[type=text]{
-    border: 2px solid;
-    border-radius:3px;
-    font-size: 20px;
-    line-height: 20px;
-    padding: 5px 10px;
-    padding-bottom: 2px;
-}
-
-.button.active {
-    background-color: #F8F8FF;
-    color: #525252;
-}
-
-.button a {
-    text-decoration: none;
-    color: black;
 }
 
 #name {
-    font-size: 35px;
+    font-size: 2rem;
 }
 
 #submit {
-    font-size: 30px;
+    font-size: 1.8rem;
+    margin-top: 50px;
+    line-height: 20px;
+}
+#subject {
+    font-size: 1.8rem;
+    margin: 40px;
+}
+
+@media (max-width: 600px) {
+    #name {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    #submit {
+        font-size: 0.8rem;
+    }
+    #subject {
+        font-size: 1.2rem;
+    }
+
+    input[type=text] {
+        max-width: 70vw;
+    }
+
 }
