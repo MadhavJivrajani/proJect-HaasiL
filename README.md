@@ -7,7 +7,7 @@ Code mainly focuses on analysis of performance on questions posed.
 The UI for the quiz was taken from [here](https://codepen.io/gcarino/pen/LDgtn)  
 
 ### Run the web app
-Run `index.html`
+Run `public/index.html`
 
 ### TODO: 
 - [x] Log data based on tags, subjects, correctly and wrongly answered questions  
