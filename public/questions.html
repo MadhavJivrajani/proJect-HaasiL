@@ -4,16 +4,30 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
         <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+
+        <link type='text/css' rel='stylesheet' href='questions.css'/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+	
         <title>Welcome</title>
     </head>
     <body>
+        <h2 id="greet">Hey, please provide the following info</h2><br><br>
         <div id="bg">
             <form>
                 <div id="questions">
-                    <h2>Hey <span id="name"></span></h2><br><br>
-                    <input type="text" name="sub" placeholder="Subject" id="sub"required/><br><br>
-                    <input type="text" name="no_of_questions" id="no_of_questions" placeholder="Number questions" required/><br><br>
-                    <input type="date" name="date" id="date" required/><br><br>
+                    <input type="text" name="name" id="name" placeholder="Volunteer name" required/><br><br>
+                    <!-- <input type="text" name="sub" placeholder="Subject" id="sub"required/><br><br> -->
+                    <center>
+                        Subject<br>
+                        <select name="sub" id="sub" required>
+                            <option value="math">Math</option>
+                            <option value="kannada">Kannada</option>
+                        </select>
+                    </center><br>
+                    <input type="text" name="no_of_questions" id="no_of_questions" placeholder="Number of questions" required/><br><br>
+                    <label for="date">Date on which quiz will be taken</label>
+                    <br><input type="date" name="date" id="date" required/><br><br>
                     <input type="submit" value="Submit" id="submit_info">     
                 </div> 
             </form> 
@@ -22,6 +36,9 @@
             <form id="get_ques">
 
             </form>
+        </div>
+        <div id="back_to_dashboard">
+
         </div>
         <script>
             const firebaseConfig = {
@@ -34,8 +51,11 @@
                 appId: "1:221496357927:web:6b6c8f2b76ed0b47644a02",
                 measurementId: "G-1L95T5KCGB"
             };
+
             firebase.initializeApp(firebaseConfig);
+
+            db = firebase.firestore();
         </script>
-        <script src = "../scripts/questions.js"></script>
+        <script src = "questions.js"></script>
     </body>
 </html>

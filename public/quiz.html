@@ -6,8 +6,12 @@
 		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase.js"></script>
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
-		<link type='text/css' rel='stylesheet' href='../css/quiz_style.css'/>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+
+
+		<link type='text/css' rel='stylesheet' href='quiz_style.css'/>
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
 
 		<title>Project Haasil</title>
@@ -18,6 +22,19 @@
 
             </select>
         </div>
+        <div id="timestamps">
+            <select id="timestamp_list">
+
+            </select>
+        </div>
+        <div id="subs">
+            <select id="subs_list" placeholder = "Select Subject" required>
+                <option>Select subject</option>
+                <option value="math">Math</option>
+                <option value="kannada">Kannada</option>
+            </select>
+        </div>
+        <center id="back"><a href="dashboard.html">Back to dashboard</a></center>
         <div id='container'>
             <div id='title'>
                 <h1>Project Haasil</h1>
@@ -43,8 +60,10 @@
 
             firebase.initializeApp(firebaseConfig);
 
+
             const db = firebase.firestore();
+            const real_db = firebase.database();
         </script>
-		<script src = "../scripts/quiz.js"></script>
+		<script src = "quiz.js"></script>
 	</body>
 </html>

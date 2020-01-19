@@ -9,36 +9,37 @@
 		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+
+		<link type='text/css' rel='stylesheet' href='index.css'/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
 	
 		<title>Project Haasil</title>
 	</head>
 	<body>
-		<form id="form">
-			Email<input type="text" id="email"/><br>
-			Password<input type="password" id="pass"/><br>
-			<span id="name1">Name</span><input type="text" id="name"/><br>
 
-		</form>
-		<div id="buttons">
-			<button id="login">Log In</button>
-			<button id="signup">Sign Up</button>
+		<div id="logo">
+			<img src="icon.png" alt="">
+		</div>
+		<div class="form">
+			<form id="form">
+				<label for="email">Email</label>
+				<input type="text" id="email" required/><br>
+				<label for="password">Password</label>
+				<input type="password" id="pass" required/><br>
+				<label id="name1" for="name">Name</span><input type="text" id="name" required/><br>
+	
+			</form>
+			<div id="buttons">
+				<button id="login">Log In</button>
+				<button id="signup">Sign Up</button>
+			</div>
+				
 		</div>
 		<button id="logout">Log Out</button>
+
 		
-		<center><h2 id="welcome"></h2></center>
-
-		<div id='container'>
-			<div id='title'>
-				<h1>Project Haasil</h1>
-			</div>
-				<br/>
-				<div id='quiz'></div>
-			<div class='button' id='next'><a href='#'>Next</a></div>
-			<div class='button' id='prev'><a href='#'>Prev</a></div>
-			<div class='button' id='start'> <a href='#'>Start Over</a></div>
-
-		</div>			
+		<center><h2 id="welcome"></h2></center>		
 	
-		<script src = "../scripts/app.js"></script>
+		<script src = "app.js"></script>
 	</body>
 </html>
