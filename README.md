@@ -15,5 +15,5 @@ Run `public/index.html`
 - [x] Log data about individual students  
 - [x] Figure out gamification  
 - [x] Reformat JSON and modify code  
-- [ ] Enable auth over multiple pages in firebase
+- [x] Enable auth over multiple pages in firebase
 - [ ] Integrate gamification   
